@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview: module code &mdash; Demo Sphinx 0.1 documentation</title>
+  <title>tools &mdash; Sphinx Demo 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            Demo Sphinx
+            Sphinx Demo
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -52,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Demo Sphinx</a>
+          <a href="../index.html">Sphinx Demo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -60,7 +60,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Overview: module code</li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tools</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,10 +70,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="tools.html">tools</a></li>
-<li><a href="use_tools.html">use_tools</a></li>
-</ul>
+  <h1>Source code for tools</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file contains functions to be used in process_data.</span>
+
+<span class="sd">:Author: Sandra</span>
+<span class="sd">:Last updated: 11/09/2024</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="add">
+<a class="viewcode-back" href="../tools.html#tools.add">[docs]</a>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function adds two integer values.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        var1 (int): any integer value</span>
+<span class="sd">        var2 (int): any integer value</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ans (int): the sum of the two input values</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+    <span class="k">return</span> <span class="n">ans</span></div>
+
+    
+<div class="viewcode-block" id="subtract">
+<a class="viewcode-back" href="../tools.html#tools.subtract">[docs]</a>
+<span class="k">def</span> <span class="nf">subtract</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function subtracts two integer values.</span>
+<span class="sd">    </span>
+<span class="sd">    var2 is subtracted from var1</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        var1 (int): any integer value</span>
+<span class="sd">        var2 (int): any integer value</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ans (int): the difference of the two input values</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">-</span> <span class="n">var2</span>
+    <span class="k">return</span> <span class="n">ans</span></div>
+
+        
+</pre></div>
 
            </div>
           </div>

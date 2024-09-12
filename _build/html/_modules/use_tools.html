@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tools &mdash; Demo Sphinx 0.1 documentation</title>
+  <title>use_tools &mdash; Sphinx Demo 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            Demo Sphinx
+            Sphinx Demo
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -52,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Demo Sphinx</a>
+          <a href="../index.html">Sphinx Demo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -61,7 +61,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
-      <li class="breadcrumb-item active">tools</li>
+      <li class="breadcrumb-item active">use_tools</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -70,52 +70,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for tools</h1><div class="highlight"><pre>
+  <h1>Source code for use_tools</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This file contains functions to be used in process_data.</span>
+<span class="sd">This file uses the functions in tools.py</span>
 
 <span class="sd">:Author: Sandra</span>
 <span class="sd">:Last updated: 11/09/2024</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="add">
-<a class="viewcode-back" href="../tools.html#tools.add">[docs]</a>
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function adds two integer values.</span>
-<span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">        var1 (int): any integer value</span>
-<span class="sd">        var2 (int): any integer value</span>
-<span class="sd">        </span>
-<span class="sd">    Returns:</span>
-<span class="sd">        ans (int): the sum of the two input values</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ans</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
-    <span class="k">return</span> <span class="n">ans</span></div>
+<span class="kn">import</span> <span class="nn">tools</span>
 
-    
-<div class="viewcode-block" id="subtract">
-<a class="viewcode-back" href="../tools.html#tools.subtract">[docs]</a>
-<span class="k">def</span> <span class="nf">subtract</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+<div class="viewcode-block" id="run_all">
+<a class="viewcode-back" href="../use_tools.html#use_tools.run_all">[docs]</a>
+<span class="k">def</span> <span class="nf">run_all</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function subtracts two integer values.</span>
+<span class="sd">    This function</span>
 <span class="sd">    </span>
 <span class="sd">    var2 is subtracted from var1</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters:</span>
-<span class="sd">        var1 (int): any integer value</span>
-<span class="sd">        var2 (int): any integer value</span>
+<span class="sd">        None</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
-<span class="sd">        ans (int): the difference of the two input values</span>
+<span class="sd">        None</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ans</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">-</span> <span class="n">var2</span>
-    <span class="k">return</span> <span class="n">ans</span></div>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span>
+    
+    <span class="n">a</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="mi">0</span></div>
 
-        
+    
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">run_all</span><span class="p">()</span>
 </pre></div>
 
            </div>
