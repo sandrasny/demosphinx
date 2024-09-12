@@ -7,11 +7,14 @@
 	In conf.py:
 	
 	3.1 Add path to code
+   
 	3.2 Add extensions
-	3.3 Edit returns style 
+   
+	3.3 Edit returns style
+   
 	3.4 Edit theme
 
-4. Edit index.rst
-5. Run ‘sphinx-apidoc -o . ../code_folder’ within the docs folder
-6. Run ‘make html’ within the docs folder
-7. Generated html files can be found in docs/_build/html
+5. Edit index.rst
+6. Run ‘sphinx-apidoc -o . ../code_folder’ within the docs folder
+7. Run ‘make html’ within the docs folder
+8. Generated html files can be found in docs/_build/html
