@@ -9,10 +9,12 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v3
-    - name: Install dependencies
-      run: sudo pip3 install sphinx_rtd_theme    
+    # - name: Install dependencies
+    #   run: sudo pip3 install sphinx_rtd_theme    
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
+      with:
+        pre-build-command: python -m pip install sphinx_rtd_theme
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
