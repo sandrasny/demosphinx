@@ -9,25 +9,21 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-      - name: Commit documentation changes
-        run: |
-          git clone https://github.com/sandrasny/demosphinx.git --branch gh-pages --single-branch gh-pages
-          cp -r docs/_build/html/* gh-pages/
-          cd gh-pages
-          # git config --local user.email "action@github.com"
-          # git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Update documentation" -a || true
-          # The above command will fail if no changes were present, so we ignore
-          # the return code.
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: gh-pages
-          directory: gh-pages
-          github_token: ${{ secrets.GITHUB_TOKEN }}      
+        - uses: actions/checkout@v2
+        - name: Copy my folder
+          env:
+            SRC_FOLDER_PATH: 'docs/_build/html'
+            TARGET_BRANCH: 'gh-pages'
+          run: |
+            files=$(find $SRC_FOLDER_PATH -type f) # get the file list
+            git config --global user.name 'GitHub Action'
+            git config --global user.email 'action@github.com'
+            git fetch                         # fetch branches
+            git checkout $TARGET_BRANCH       # checkout to your branch
+            git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
+            git add -A
+            git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
+            git push origin $TARGET_BRANCH # push to remote branch    
       # - name: Deploy to GitHub Pages
       #   uses: peaceiris/actions-gh-pages@v3
       #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
