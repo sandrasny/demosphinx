@@ -1,8 +1,10 @@
 """
 This file contains functions to be used in use_tools.
 
+This is brand new docstring
+
 :Author: Sandra
-:Last updated: 11/09/2024
+:Last updated: 17/09/2024
 """
 
 def add(var1, var2):
