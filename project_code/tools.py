@@ -1,5 +1,5 @@
 """
-This file contains functions to be used in process_data.
+This file contains functions to be used in use_tools.
 
 :Author: Sandra
 :Last updated: 11/09/2024

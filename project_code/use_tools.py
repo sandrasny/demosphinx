@@ -9,7 +9,7 @@ import tools
 
 def run_all():
     """
-    This function
+    This function uses the functions imported from tools.py
     
     var2 is subtracted from var1
     
