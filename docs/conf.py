@@ -24,6 +24,11 @@ extensions = [
     'sphinx.ext.napoleon'
 ]
 
+autodoc_mock_imports = [
+'datetime',
+'numpy'
+] 
+
 # Napoleon custom settings
 napoleon_custom_sections = [('Returns', 'params_style')]
 

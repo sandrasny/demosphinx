@@ -6,6 +6,7 @@ This file contains even more functions to be used in use_tools.
 """
 
 import numpy
+import datetime
 
 def multiply(var1, var2):
     """
