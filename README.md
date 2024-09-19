@@ -3,6 +3,8 @@
 ## Introduction
 This repository serves as an example of using Sphinx and Github to generate documentation from Python code and to publish that documentation to a website.
 
+Read the docs at https://sandrasny.github.io/demosphinx/.
+
 ## Installing Sphinx
 Can install using pip or conda
 
@@ -21,7 +23,7 @@ Check install using `sphinx-build --version`
 ### Setting up Sphinx documentation for a **new** project
 1. Your repository should have a main branch, with your project code in a folder, as well as a branch named gh-pages which is empty
 2. Locally, while in your main branch, create an empty docs folder and a .github folder
-3. Within the .github folder, add the sphinx-doc-build.yml file which can be found in this repository
+3. Within the .github folder, add a workflows folder, and in there add the sphinx-doc-build.yml file which can be found in this repository
 4. Within the docs folder, run `sphinx-quickstart`, where you will need to provide details about the project - read more [here](#running-sphinx-quickstart).
 3. In the docs folder, edit conf.py and index.rst, and add a requirements.txt file, according to the guides [here](#editing-confpy-indexrst-and-requirementstxt-files).
 4. Run `sphinx-apidoc -o . ../project_code` within the docs folder
