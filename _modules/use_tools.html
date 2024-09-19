@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview: module code &mdash; Sphinx Demo 0.1 documentation</title>
+  <title>use_tools &mdash; Sphinx Demo 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -60,7 +60,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Overview: module code</li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">use_tools</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,11 +70,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="more_tools.html">more_tools</a></li>
-<li><a href="tools.html">tools</a></li>
-<li><a href="use_tools.html">use_tools</a></li>
-</ul>
+  <h1>Source code for use_tools</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file uses the functions in tools.py</span>
+
+<span class="sd">:Author: Sandra</span>
+<span class="sd">:Last updated: 11/09/2024</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">tools</span>
+
+<div class="viewcode-block" id="run_all"><a class="viewcode-back" href="../use_tools.html#use_tools.run_all">[docs]</a><span class="k">def</span> <span class="nf">run_all</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function uses the functions imported from tools.py</span>
+<span class="sd">    </span>
+<span class="sd">    var2 is subtracted from var1</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        None</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span>
+    
+    <span class="n">a</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="mi">0</span></div>
+    
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">run_all</span><span class="p">()</span>
+</pre></div>
 
            </div>
           </div>
