@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview: module code &mdash; Sphinx Demo 0.1 documentation</title>
+  <title>more_tools &mdash; Sphinx Demo 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -60,7 +60,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Overview: module code</li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">more_tools</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,11 +70,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="more_tools.html">more_tools</a></li>
-<li><a href="tools.html">tools</a></li>
-<li><a href="use_tools.html">use_tools</a></li>
-</ul>
+  <h1>Source code for more_tools</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file contains even more functions to be used in use_tools.</span>
+
+<span class="sd">:Author: Sandra</span>
+<span class="sd">:Last updated: 11/09/2024</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<div class="viewcode-block" id="multiply"><a class="viewcode-back" href="../more_tools.html#more_tools.multiply">[docs]</a><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function multiplies two integer values by each other.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        var1 (int): any integer value</span>
+<span class="sd">        var2 (int): any integer value</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ans (int): the product of the two input values</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">*</span> <span class="n">var2</span>
+    <span class="k">return</span> <span class="n">ans</span></div>
+    
+<div class="viewcode-block" id="divide"><a class="viewcode-back" href="../more_tools.html#more_tools.divide">[docs]</a><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function divides two integer values by each other.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        var1 (int): any integer value</span>
+<span class="sd">        var2 (int): any integer value</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ans (int): the quotient of the two input values</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">/</span> <span class="n">var2</span>
+    <span class="k">return</span> <span class="n">ans</span>    </div>
+    
+</pre></div>
 
            </div>
           </div>
