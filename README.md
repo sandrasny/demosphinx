@@ -3,7 +3,7 @@
 ## Introduction
 This repository serves as an example of using Sphinx and Github to generate documentation from Python code and to publish that documentation to a website.
 
-Read the docs at https://sandrasny.github.io/demosphinx/{:target="_blank"}.
+Read the docs at [here](https://sandrasny.github.io/demosphinx/){:target="_blank"}.
 
 ## Installing Sphinx
 Can install using pip or conda
