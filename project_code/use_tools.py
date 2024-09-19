@@ -6,7 +6,6 @@ This file uses the functions in tools.py
 """
 
 import tools
-import numpy
 
 def run_all():
     """

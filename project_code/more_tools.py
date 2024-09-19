@@ -5,6 +5,8 @@ This file contains even more functions to be used in use_tools.
 :Last updated: 11/09/2024
 """
 
+import numpy
+
 def multiply(var1, var2):
     """
     This function multiplies two integer values by each other.
