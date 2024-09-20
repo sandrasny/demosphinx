@@ -9,7 +9,9 @@ Read the docs at https://sandrasny.github.io/demosphinx/.
 - Establish / describe docstring style 
 - Note that code must ideally be packaged in functions for this documentation system to work
 - Errors in a module leads to the documentation for that module not showing up, e.g. errors due to mixed Python 2 and 3
-- 
+- Look into Github Actions [billing](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions)
+  - " For private repositories, each GitHub account receives a certain amount of free minutes and storage for use with GitHub-hosted runners, depending on the account's plan. Any usage beyond the included amounts is controlled by spending limits."
+
 
 ## Installing Sphinx
 Can install using pip or conda
