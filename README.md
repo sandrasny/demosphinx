@@ -3,9 +3,9 @@
 ## Introduction
 This repository serves as a simple example of using Sphinx to generate documentation from Python code and to publish that documentation to a Github Page.
 
-Read the docs at https://sandrasny.github.io/demosphinx/.
+Read the docs for this repository at https://sandrasny.github.io/demosphinx/.
 
-## Notes / ToDo for this user guide
+### Notes / TODOs for this user guide
 - Establish / describe docstring style 
 - Note that code must ideally be packaged in functions for this documentation system to work
 - Errors in a module leads to the documentation for that module not showing up, e.g. errors due to mixed Python 2 and 3
@@ -14,6 +14,8 @@ Read the docs at https://sandrasny.github.io/demosphinx/.
 
 
 ## Installing Sphinx
+(To be expanded)
+
 Can install using pip or conda
 
 Check install using `sphinx-build --version`
@@ -22,26 +24,28 @@ Check install using `sphinx-build --version`
 
 ### Setting up Sphinx documentation for a *new* project
 1. Your repository should have a branch with all your project code as well as an empty branch named gh-pages
-2. Locally, while working in your main branch, create two empty folders, one named "docs" and one named ".github", in the root directory
-3. Within the .github folder, add a folder named "workflows", and in there add a file named `sphinx-doc-build.yml`. The contents of this file which can be copied from [here](#adding-a-sphinx-docs-buildyml-file), or from the `sphinx-doc-build.yml` file found in the repository where this readme is located.
-4. Within the docs folder, run `sphinx-quickstart`, where you will need to provide details about the project - read more [here](#running-sphinx-quickstart). This will generate a number of files and directories in the docs folder.
-3. In the docs folder, edit the new files `conf.py` and `index.rst`, and add a `requirements.txt` file, according to the following guides: [conf](#editing-confpy), [index](#editing-indexrst), and [requirements](#editing-requirementstxt).
+2. On Github, in the settings for your repository, navigate to Pages and select gh-pages as the branch from which to deploy from
+3. Locally, while working in your main branch, create two empty folders, one named "docs" and one named ".github", in the root directory
+4. Within the .github folder, add a folder named "workflows", and in there add a file named `sphinx-doc-build.yml`. The contents of this file can be copied from [here](#adding-a-sphinx-docs-buildyml-file), or from the `sphinx-doc-build.yml` file found in the repository where this readme is located.
+5. Within the docs folder, use command prompt to run the command `sphinx-quickstart`, after which you will be prompted to provide details about the project - read more [here](#running-sphinx-quickstart). This will generate a number of files and directories in the docs folder.
+3. In the docs folder, edit the new files `conf.py` and `index.rst`, and add a `requirements.txt` file, according to the following guides: [edit conf](#editing-confpy), [edit index](#editing-indexrst), and [add requirements](#creating-requirementstxt).
 4. Run the command `sphinx-apidoc -o . ../project_code` within the docs folder. Replace `project_code` with the name of your relevant code folder. If your code is not contained in a folder, the command should read `sphinx-apidoc -o . ..`
 5. Commit and push the docs folder with all the new generated files to the repository - this push should trigger the Github Action (defined as a workflow in `sphinx-doc-build.yml`) to build html files and push them to the gh-pages branch, which will update the Github Page for your repository.
 
-### Updating up Sphinx documentation for an *existing* project
+
+### Updating Sphinx documentation for an *existing* project
 For a project with a repository already set up with Sphinx source files and Github Actions and Pages, code changes to the branch for which the workflow has been setup should trigger changes in the published documents.
 
-Note that only changes to the relevant project scripts, i.e. those modules included in the modules.rst file, will trigger a documentation update. Editing the README, for example will not update the documentation. 
+Note that only changes to the relevant project scripts, i.e. those modules included in the modules.rst file, will trigger a documentation update. Editing the README, for example, will not update the documentation. 
 
-When a new file is ADDED: 
-1. Add that module name to the modules.rst file
+When a new file is ADDED, carry out the following steps locally: 
+1. Add that module name to the modules.rst file within the docs folder in your main code branch
 2. Run `sphinx-apidoc -o . ../project_code` (this will create an .rst file for the new file)
 3. Push to Github (or run `make clean html`, if generating html locally). 
 
-When a file is DELETED: 
-1. Delete the corresponding .rst file
-2. Remove that module name from the modules.rst file
+When a file is DELETED, carry out the following steps locally: 
+1. Delete the corresponding .rst file from the docs folder in your main code branch
+2. Remove that module name from the modules.rst file within the docs folder in your main code branch
 3. Run `sphinx-apidoc -o . ../project_code`
 4. Push to Github (or run `make clean html`, if generating html locally).
 
@@ -60,14 +64,14 @@ The steps are very similar if Sphinx is being used to generate html files locall
 5. Run `make html` within the docs folder
 6. Generated html files can be found in docs/_build/html
 
-### Folder structure
-This example uses two main folders, called `project_code` and `docs`. The code folder `project_code` contains all the scripts in a single layer, i.e. not nested in further folders.
+### Directory structure
+This example uses two main directories, called `project_code` and `docs`. The code folder `project_code` contains all the scripts in a single level, i.e. not nested in further directories.
 
 Take note that this setup is considered the default in this guide, and a different directory structure will require small tweaks in the setup.
 
 Sphinx can be used in a setup where the scripts are simply in the root directory and not in a code folder, or in a setup where, within the code folder, scripts are found in various separate folders.
 
-### Troubleshooting: html files build, but without docstrings
+### Troubleshooting: html files are created, but without information from the docstrings
 Make sure all imported modules are included in mock imports in conf.py
 
 Code errors can also lead to documentation appearing blank.
@@ -77,10 +81,10 @@ You will be able to see more errors raised by Sphinx if you generate the html fi
 ### Running sphinx-quickstart
 Go with the default options (not separate build and source directories)
 
-Provide project name, author name, project version, accept default language.
+Provide project name, author name, project version, accept default language (English).
 
 ### Adding a sphinx-docs-build.yml file
-This file, located at `/.github/workflows/sphinx-docs-build.yml` within your main project directory, make calls to existing Github Actions in order to 1) build the HTML files from the source files uploaded in the docs folder, 2) package the generated output files, and 3) push these files to the gh-pages branch.
+This file, located at `/.github/workflows/sphinx-docs-build.yml` within your main project directory, makes calls to existing Github Actions in order to 1) build the HTML files from the source files uploaded in the docs folder, 2) package the generated output files, and 3) push these files to the gh-pages branch.
 
 ```
 name: Sphinx build
@@ -168,7 +172,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 ```
 
-Each of the relevant blocks are described here:
+Each of the relevant blocks which must be edited or added to the original conf.py filed that is generated by `sphinx-quickstart` are described here:
 
 1. Indicate where the project code can be found, relative to the current docs directory:
 ```
@@ -249,11 +253,11 @@ This is added to fix an issue with using the "sphinx_rtd_theme" when building th
 
 ## Notes on Github Actions, Workflows, Pages
 
-### 
-
-### 
+TODO
 
 ## Docstring style guide
+Include references / examples
+
 ### Modules
 The docstring description within a module or a script should include:
 
