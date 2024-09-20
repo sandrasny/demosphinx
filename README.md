@@ -5,6 +5,12 @@ This repository serves as a simple example of using Sphinx to generate documenta
 
 Read the docs at https://sandrasny.github.io/demosphinx/.
 
+## Notes / ToDo for this user guide
+- Establish / describe docstring style 
+- Note that code must ideally be packaged in functions for this documentation system to work
+- Errors in a module leads to the documentation for that module not showing up, e.g. errors due to mixed Python 2 and 3
+- 
+
 ## Installing Sphinx
 Can install using pip or conda
 
@@ -22,13 +28,23 @@ Check install using `sphinx-build --version`
 5. Commit and push the docs folder with all the new generated files to the repository - this push should trigger the Github Action (defined as a workflow in `sphinx-doc-build.yml`) to build html files and push them to the gh-pages branch, which will update the Github Page for your repository.
 
 ### Updating up Sphinx documentation for an *existing* project
-For a project with a repository already set up with Sphinx source files and Github Actions and Pages, any pushes to the main branch should trigger changes in the published documents.
+For a project with a repository already set up with Sphinx source files and Github Actions and Pages, code changes to the branch for which the workflow has been setup should trigger changes in the published documents.
 
-When a new file is ADDED, add that module name to the modules.rst file. Then run `make clean`, `sphinx-apidoc -o . ../project_code`, and push to Github (or run make html, if generating html locally). 
+Note that only changes to the relevant project scripts, i.e. those modules included in the modules.rst file, will trigger a documentation update. Editing the README, for example will not update the documentation. 
 
-When a file is DELETED, delete the corresponding .rst file, and remove that module name from the modules.rst file. Then run `make clean`, `sphinx-apidoc -o . ../project_code`, and push to Github (or run make html, if generating html locally).
+When a new file is ADDED: 
+1. Add that module name to the modules.rst file
+2. Run `sphinx-apidoc -o . ../project_code` (this will create an .rst file for the new file)
+3. Push to Github (or run `make clean html`, if generating html locally). 
 
-When any existing file is MODIFIED, simply push to Github (or run make html, if generating html locally).
+When a file is DELETED: 
+1. Delete the corresponding .rst file
+2. Remove that module name from the modules.rst file
+3. Run `sphinx-apidoc -o . ../project_code`
+4. Push to Github (or run `make clean html`, if generating html locally).
+
+When any existing file is MODIFIED:
+1. Simply push to Github (or run make html, if generating html locally).
 
 ## Notes on using Sphinx
 
@@ -50,14 +66,20 @@ Take note that this setup is considered the default in this guide, and a differe
 Sphinx can be used in a setup where the scripts are simply in the root directory and not in a code folder, or in a setup where, within the code folder, scripts are found in various separate folders.
 
 ### Troubleshooting: html files build, but without docstrings
-make sure all imported modules are included in mock imports in conf.py
+Make sure all imported modules are included in mock imports in conf.py
+
+Code errors can also lead to documentation appearing blank.
+
+You will be able to see more errors raised by Sphinx if you generate the html files locally (by running `make html` within your docs folder), than if the doc generation happens on Github - this can be a good step for debugging.
 
 ### Running sphinx-quickstart
-Go with the default (not separate)
+Go with the default options (not separate build and source directories)
 
 Provide project name, author name, project version, accept default language.
 
 ### Adding a sphinx-docs-build.yml file
+This file, located at `/.github/workflows/sphinx-docs-build.yml` within your main project directory, make calls to existing Github Actions in order to 1) build the HTML files from the source files uploaded in the docs folder, 2) package the generated output files, and 3) push these files to the gh-pages branch.
+
 ```
 name: Sphinx build
 
