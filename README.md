@@ -27,30 +27,32 @@ Check install using `sphinx-build --version`
 2. On Github, in the settings for your repository, navigate to Pages and select gh-pages as the branch from which to deploy from
 3. Locally, while working in your main branch, create two empty folders, one named "docs" and one named ".github", in the root directory
 4. Within the .github folder, add a folder named "workflows", and in there add a file named `sphinx-doc-build.yml`. The contents of this file can be copied from [here](#adding-a-sphinx-docs-buildyml-file), or from the `sphinx-doc-build.yml` file found in the repository where this readme is located.
-5. Within the docs folder, use command prompt to run the command `sphinx-quickstart`, after which you will be prompted to provide details about the project - read more [here](#running-sphinx-quickstart). This will generate a number of files and directories in the docs folder.
-3. In the docs folder, edit the new files `conf.py` and `index.rst`, and add a `requirements.txt` file, according to the following guides: [edit conf](#editing-confpy), [edit index](#editing-indexrst), and [add requirements](#creating-requirementstxt).
+5. Use command prompt to navigate to the docs folder and run the command `sphinx-quickstart`, after which you will be prompted to provide details about the project - read more [here](#running-sphinx-quickstart). This will generate a number of files and directories in the docs folder.
+3. In the docs folder, edit the new files `conf.py` and `index.rst`, and add a `requirements.txt` file, according to the following guides: [edit conf.py](#editing-confpy), [edit index.rst](#editing-indexrst), and [add requirements.txt](#creating-requirementstxt).
 4. Run the command `sphinx-apidoc -o . ../project_code` within the docs folder. Replace `project_code` with the name of your relevant code folder. If your code is not contained in a folder, the command should read `sphinx-apidoc -o . ..`
-5. Commit and push the docs folder with all the new generated files to the repository - this push should trigger the Github Action (defined as a workflow in `sphinx-doc-build.yml`) to build html files and push them to the gh-pages branch, which will update the Github Page for your repository.
+5. Commit and push the docs folder with all the new generated files to the main branch of repository - this push should trigger the Github Action (defined as a workflow in `sphinx-doc-build.yml`) to build html files and push them to the gh-pages branch, which will update the Github Page for your repository.
 
 
 ### Updating Sphinx documentation for an *existing* project
 For a project with a repository already set up with Sphinx source files and Github Actions and Pages, code changes to the branch for which the workflow has been setup should trigger changes in the published documents.
 
-Note that only changes to the relevant project scripts, i.e. those modules included in the modules.rst file, will trigger a documentation update. Editing the README, for example, will not update the documentation. 
+Note that only changes to the relevant project scripts, i.e. those modules included in the modules.rst file, will trigger a documentation update. Editing the README for a project, for example, will not update the documentation. 
 
 When a new file is ADDED, carry out the following steps locally: 
 1. Add that module name to the modules.rst file within the docs folder in your main code branch
-2. Run `sphinx-apidoc -o . ../project_code` (this will create an .rst file for the new file)
+2. Run `sphinx-apidoc -o . ../project_code` from the docs folder (this will create an .rst file for the new file)
 3. Push to Github (or run `make clean html`, if generating html locally). 
 
 When a file is DELETED, carry out the following steps locally: 
 1. Delete the corresponding .rst file from the docs folder in your main code branch
 2. Remove that module name from the modules.rst file within the docs folder in your main code branch
-3. Run `sphinx-apidoc -o . ../project_code`
+3. Run `sphinx-apidoc -o . ../project_code` from the docs folder
 4. Push to Github (or run `make clean html`, if generating html locally).
 
 When any existing file is MODIFIED:
 1. Simply push to Github (or run make html, if generating html locally).
+
+Note that you never need to push to the gh-pages branch. Instead, all changes should be pushed to the main branch, and the Github workflow will generate the documentation and push to the gh-pages branch.
 
 ## Notes on using Sphinx
 
@@ -59,13 +61,13 @@ The steps are very similar if Sphinx is being used to generate html files locall
 
 1. Create empty docs folder
 2. Run `sphinx-quickstart` within the docs folder
-3. In the docs folder, edit `conf.py` and `index.rst`
+3. In the docs folder, edit `conf.py` and `index.rst` (more information [here](#editing-confpy) and [here](#creating-requirementstxt))
 4. Run `sphinx-apidoc -o . ../code_folder` within the docs folder
 5. Run `make html` within the docs folder
 6. Generated html files can be found in docs/_build/html
 
 ### Directory structure
-This example uses two main directories, called `project_code` and `docs`. The code folder `project_code` contains all the scripts in a single level, i.e. not nested in further directories.
+This example uses two main directories called `project_code` and `docs`. The code folder `project_code` contains all the scripts in a single level, i.e. not nested in further directories.
 
 Take note that this setup is considered the default in this guide, and a different directory structure will require small tweaks in the setup.
 
@@ -157,6 +159,12 @@ autodoc_mock_imports = [
 'os',
 'time',
 'h5py',
+'scipy',
+'monitor_conf',
+'collections',
+'pickle',
+'pathlib',
+'tkinter'
 ] 
 
 # Napoleon custom settings
@@ -172,7 +180,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 ```
 
-Each of the relevant blocks which must be edited or added to the original conf.py filed that is generated by `sphinx-quickstart` are described here:
+Each of the relevant blocks which must be edited or added to the original conf.py filed that is generated by `sphinx-quickstart` is described here:
 
 1. Indicate where the project code can be found, relative to the current docs directory:
 ```
@@ -206,10 +214,16 @@ autodoc_mock_imports = [
 'os',
 'time',
 'h5py',
+'scipy',
+'monitor_conf',
+'collections',
+'pickle',
+'pathlib',
+'tkinter'
 ] 
 ```
 
-4. Edit the way that 'Returns' in function docstrings are displayed
+4. Edit the way that 'Returns' in function docstrings are displayed:
 ```
 # Napoleon custom settings
 napoleon_custom_sections = [('Returns', 'params_style')]
