@@ -1,4 +1,4 @@
-# Generating Documentation using dosctrings, Sphinx and Github
+# Generating Documentation using docstrings, Sphinx and Github
 
 ## Introduction
 This repository serves as a simple example of a project that uses [Sphinx](https://docs.readthedocs.io/en/stable/intro/sphinx.html) to generate documentation from Python code and to publish that documentation to a Github Page.
