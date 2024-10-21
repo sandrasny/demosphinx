@@ -1,29 +1,21 @@
 # Generating Documentation using dosctrings, Sphinx and Github
 
 ## Introduction
-This repository serves as a simple example of using Sphinx to generate documentation from Python code and to publish that documentation to a Github Page.
+This repository serves as a simple example of a project that uses [Sphinx](https://docs.readthedocs.io/en/stable/intro/sphinx.html) to generate documentation from Python code and to publish that documentation to a Github Page.
 
 Read the docs for this repository at https://sandrasny.github.io/demosphinx/.
 
-### Notes / TODOs for this user guide
-- Establish / describe docstring style 
-- Note that code must ideally be packaged in functions for this documentation system to work
-- Errors in a module leads to the documentation for that module not showing up, e.g. errors due to mixed Python 2 and 3
-- Look into Github Actions [billing](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions)
-  - " For private repositories, each GitHub account receives a certain amount of free minutes and storage for use with GitHub-hosted runners, depending on the account's plan. Any usage beyond the included amounts is controlled by spending limits."
-
-
 ## Installing Sphinx
-(To be expanded)
+If you are setting up the Sphinx documentation for a new project, or editing the Sphinx setup to add or remove a file, you will need to have Sphinx installed.
 
-Can install using pip or conda
+Sphinx can be installed using conda or pip. This is done with the command `conda install sphinx` or `pip install sphinx` from the command line. After installation, confirm that Sphinx is correctly installed using the command `sphinx-build --version`.
 
-Check install using `sphinx-build --version`
+If you are only editing a file that is already included in a Sphinx setup, it is not necessary to have Sphinx downloaded.
 
 ## Using Sphinx on Github
 
 ### Setting up Sphinx documentation for a *new* project
-1. Your repository should have a branch with all your project code as well as an empty branch named gh-pages
+1. Your repository should have a branch with all your project code (typically your main branch) as well as an empty branch named gh-pages
 2. On Github, in the settings for your repository, navigate to Pages and select gh-pages as the branch from which to deploy from
 3. Locally, while working in your main branch, create two empty folders, one named "docs" and one named ".github", in the root directory
 4. Within the .github folder, add a folder named "workflows", and in there add a file named `sphinx-doc-build.yml`. The contents of this file can be copied from [here](#adding-a-sphinx-docs-buildyml-file), or from the `sphinx-doc-build.yml` file found in the repository where this readme is located.
@@ -66,6 +58,41 @@ The steps are very similar if Sphinx is being used to generate html files locall
 5. Run `make html` within the docs folder
 6. Generated html files can be found in docs/_build/html
 
+### Code structure
+When we use `sphinx-apidoc` to process the docstrings in our Python code, Sphinx imports the documented modules, which means that all module-level code is executed.
+
+When our modules are executed in this way, it can lead to unexpected errors or outputs, which can stop the documentation from being generated correctly.
+
+To prevent this, it is advised that all module-level code is moved into functions. 
+
+For a script which is written to run consequentially without the use of functions, move all code after the module imports into one main function. Then edit the module to run its code only when it is called by name.
+
+For example, a module named `use_tools.py` that previously looked like this:
+```
+import tools
+
+a = 1
+b = 2
+print(a, b)
+```
+
+Should be edited to look like this:
+```
+import tools
+
+def run_all():
+  a = 1
+  b = 2
+  print(a, b)
+    
+if __name__=='__main__':
+    run_all()
+```
+
+If the first block were imported as a module, either by Sphinx or another module, the lines of code would be executed, and `a` and `b` would be printed. If the second block were imported as a module, the code would not be executed, and nothing would be printed.
+
+Only if the module were executed independently, e.g. by calling `python use_tools.py`, would the code in `run_all()` be executed.
+
 ### Directory structure
 This example uses two main directories called `project_code` and `docs`. The code folder `project_code` contains all the scripts in a single level, i.e. not nested in further directories.
 
@@ -77,6 +104,8 @@ Sphinx can be used in a setup where the scripts are simply in the root directory
 Make sure all imported modules are included in mock imports in conf.py
 
 Code errors can also lead to documentation appearing blank.
+
+Errors in a module leads to the documentation for that module not showing up, e.g. errors due to mixed Python 2 and 3
 
 You will be able to see more errors raised by Sphinx if you generate the html files locally (by running `make html` within your docs folder), than if the doc generation happens on Github - this can be a good step for debugging.
 
@@ -270,24 +299,35 @@ This is added to fix an issue with using the "sphinx_rtd_theme" when building th
 TODO
 
 ## Docstring style guide
-Include references / examples
+Two prominent styles of docstrings for Python are the NumPy and Google. The Python guide [PEP 257](https://peps.python.org/pep-0257/) also provides some docstring conventions.
 
-### Modules
+See an example of the NumPy docstring format [here](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy), with further description [here](https://numpydoc.readthedocs.io/en/latest/format.html).
+
+See an example of the Google dosctring format [here](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html), with further description [here](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings).
+
+These two styles are quite similar, but one format must be selected for consistency across a project. 
+
+### Module Level Docstring
 The docstring description within a module or a script should include:
 
-1. One line description
-2. (Optional) Detailed description
-3. (Optional) Use example
-4. Author
-5. Last updated
+1. Concise description of the module (one line or multiple)
+2. (Optional) Use example, such as which function to call with which arguments
+3. Author
+4. Last updated
 
-### Functions
+Further optional sections for the module-level docstring include Notes and Attributes in NumPy style, and Attributes and ToDos in Google style.
+
+### Function Level Docstring
 The docstring description within a function should include:
 
-1. One line description
-2. (Optional) Detailed description
-3. (Optional) Use example
-4. Parameters
-5. Returns
+1. Concise description of the function (one line or multiple)
+2. (Optional) Use example, such as which arguments are required when calling the function
+3. Parameters (NumPy) or Args (Google)
+4. Returns
 
-## References
+Further optional sections for the function-level docstring include Raises, Notes, and Attributes in both styles.
+
+## Additional notes
+- Look into Github Actions [billing](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions)
+  - " For private repositories, each GitHub account receives a certain amount of free minutes and storage for use with GitHub-hosted runners, depending on the account's plan. Any usage beyond the included amounts is controlled by spending limits."
+- Edit toctree https://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure
