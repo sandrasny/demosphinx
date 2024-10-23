@@ -6,13 +6,15 @@
 Welcome to Sphinx Demo's documentation!
 =======================================
 
+.. include:: ../README.md
+   :parser: myst_parser.sphinx_
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
-   readme
-   modules
 
+   modules
 
 
 Indices and tables
