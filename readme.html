@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generating Documentation using docstrings, Sphinx and Github &mdash; Sphinx Demo 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="project_code" href="modules.html" />
+    <link rel="prev" title="Welcome to Sphinx Demo’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sphinx Demo
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generating Documentation using docstrings, Sphinx and Github</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-sphinx">Installing Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-sphinx-on-github">Using Sphinx on Github</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-sphinx-documentation-for-a-new-project">Setting up Sphinx documentation for a <em>new</em> project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-sphinx-documentation-for-an-existing-project">Updating Sphinx documentation for an <em>existing</em> project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-on-using-sphinx">Notes on using Sphinx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-sphinx-locally">Using Sphinx locally</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-structure">Code structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-structure">Directory structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting-html-files-are-created-but-without-information-from-the-docstrings">Troubleshooting: html files are created, but without information from the docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-sphinx-quickstart">Running sphinx-quickstart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-a-sphinx-docs-build-yml-file">Adding a sphinx-docs-build.yml file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing-conf-py">Editing <code class="docutils literal notranslate"><span class="pre">conf.py</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing-index-rst">Editing <code class="docutils literal notranslate"><span class="pre">index.rst</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-requirements-txt">Creating <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-on-github-actions-workflows-pages">Notes on Github Actions, Workflows, Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docstring-style-guide">Docstring style guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-level-docstring">Module Level Docstring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-level-docstring">Function Level Docstring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-notes">Additional notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">project_code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sphinx Demo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Generating Documentation using docstrings, Sphinx and Github</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/readme.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generating-documentation-using-docstrings-sphinx-and-github">
+<h1>Generating Documentation using docstrings, Sphinx and Github<a class="headerlink" href="#generating-documentation-using-docstrings-sphinx-and-github" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>This repository serves as a simple example of a project that uses <a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/sphinx.html">Sphinx</a> to generate documentation from Python code and to publish that documentation to a Github Page.</p>
+<p>Read the docs for this repository at https://sandrasny.github.io/demosphinx/.</p>
+</section>
+<section id="installing-sphinx">
+<h2>Installing Sphinx<a class="headerlink" href="#installing-sphinx" title="Permalink to this heading"></a></h2>
+<p>If you are setting up the Sphinx documentation for a new project, or editing the Sphinx setup to add or remove a file, you will need to have Sphinx installed.</p>
+<p>Sphinx can be installed using conda or pip. This is done with the command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">sphinx</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx</span></code> from the command line. After installation, confirm that Sphinx is correctly installed using the command <code class="docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">--version</span></code>.</p>
+<p>If you are only editing a file that is already included in a Sphinx setup, it is not necessary to have Sphinx downloaded.</p>
+</section>
+<section id="using-sphinx-on-github">
+<h2>Using Sphinx on Github<a class="headerlink" href="#using-sphinx-on-github" title="Permalink to this heading"></a></h2>
+<section id="setting-up-sphinx-documentation-for-a-new-project">
+<h3>Setting up Sphinx documentation for a <em>new</em> project<a class="headerlink" href="#setting-up-sphinx-documentation-for-a-new-project" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Your repository should have a branch with all your project code (typically your main branch) as well as an empty branch named gh-pages</p></li>
+<li><p>On Github, in the settings for your repository, navigate to Pages and select gh-pages as the branch from which to deploy from</p></li>
+<li><p>Locally, while working in your main branch, create two empty folders, one named “docs” and one named “.github”, in the root directory</p></li>
+<li><p>Within the .github folder, add a folder named “workflows”, and in there add a file named <code class="docutils literal notranslate"><span class="pre">sphinx-doc-build.yml</span></code>. The contents of this file can be copied from <a class="reference internal" href="#adding-a-sphinx-docs-buildyml-file"><span class="xref myst">here</span></a>, or from the <code class="docutils literal notranslate"><span class="pre">sphinx-doc-build.yml</span></code> file found in the repository where this readme is located.</p></li>
+<li><p>Use command prompt to navigate to the docs folder and run the command <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>, after which you will be prompted to provide details about the project - read more <a class="reference internal" href="#running-sphinx-quickstart"><span class="xref myst">here</span></a>. This will generate a number of files and directories in the docs folder.</p></li>
+<li><p>In the docs folder, edit the new files <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>, and add a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file, according to the following guides: <a class="reference internal" href="#editing-confpy"><span class="xref myst">edit conf.py</span></a>, <a class="reference internal" href="#editing-indexrst"><span class="xref myst">edit index.rst</span></a>, and <a class="reference internal" href="#creating-requirementstxt"><span class="xref myst">add requirements.txt</span></a>.</p></li>
+<li><p>Run the command <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span> <span class="pre">-o</span> <span class="pre">.</span> <span class="pre">../project_code</span></code> within the docs folder. Replace <code class="docutils literal notranslate"><span class="pre">project_code</span></code> with the name of your relevant code folder. If your code is not contained in a folder, the command should read <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span> <span class="pre">-o</span> <span class="pre">.</span> <span class="pre">..</span></code></p></li>
+<li><p>Commit and push the docs folder with all the new generated files to the main branch of repository - this push should trigger the Github Action (defined as a workflow in <code class="docutils literal notranslate"><span class="pre">sphinx-doc-build.yml</span></code>) to build html files and push them to the gh-pages branch, which will update the Github Page for your repository.</p></li>
+</ol>
+</section>
+<section id="updating-sphinx-documentation-for-an-existing-project">
+<h3>Updating Sphinx documentation for an <em>existing</em> project<a class="headerlink" href="#updating-sphinx-documentation-for-an-existing-project" title="Permalink to this heading"></a></h3>
+<p>For a project with a repository already set up with Sphinx source files and Github Actions and Pages, code changes to the branch for which the workflow has been setup should trigger changes in the published documents.</p>
+<p>Note that only changes to the relevant project scripts, i.e. those modules included in the modules.rst file, will trigger a documentation update. Editing the README for a project, for example, will not update the documentation.</p>
+<p>When a new file is ADDED, carry out the following steps locally:</p>
+<ol class="arabic simple">
+<li><p>Add that module name to the modules.rst file within the docs folder in your main code branch</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span> <span class="pre">-o</span> <span class="pre">.</span> <span class="pre">../project_code</span></code> from the docs folder (this will create an .rst file for the new file)</p></li>
+<li><p>Push to Github (or run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span> <span class="pre">html</span></code>, if generating html locally).</p></li>
+</ol>
+<p>When a file is DELETED, carry out the following steps locally:</p>
+<ol class="arabic simple">
+<li><p>Delete the corresponding .rst file from the docs folder in your main code branch</p></li>
+<li><p>Remove that module name from the modules.rst file within the docs folder in your main code branch</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span> <span class="pre">-o</span> <span class="pre">.</span> <span class="pre">../project_code</span></code> from the docs folder</p></li>
+<li><p>Push to Github (or run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span> <span class="pre">html</span></code>, if generating html locally).</p></li>
+</ol>
+<p>When any existing file is MODIFIED:</p>
+<ol class="arabic simple">
+<li><p>Simply push to Github (or run make html, if generating html locally).</p></li>
+</ol>
+<p>Note that you never need to push to the gh-pages branch. Instead, all changes should be pushed to the main branch, and the Github workflow will generate the documentation and push to the gh-pages branch.</p>
+</section>
+</section>
+<section id="notes-on-using-sphinx">
+<h2>Notes on using Sphinx<a class="headerlink" href="#notes-on-using-sphinx" title="Permalink to this heading"></a></h2>
+<section id="using-sphinx-locally">
+<h3>Using Sphinx locally<a class="headerlink" href="#using-sphinx-locally" title="Permalink to this heading"></a></h3>
+<p>The steps are very similar if Sphinx is being used to generate html files locally instead of through Github:</p>
+<ol class="arabic simple">
+<li><p>Create empty docs folder</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> within the docs folder</p></li>
+<li><p>In the docs folder, edit <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> (more information <a class="reference internal" href="#editing-confpy"><span class="xref myst">here</span></a> and <a class="reference internal" href="#creating-requirementstxt"><span class="xref myst">here</span></a>)</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span> <span class="pre">-o</span> <span class="pre">.</span> <span class="pre">../code_folder</span></code> within the docs folder</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> within the docs folder</p></li>
+<li><p>Generated html files can be found in docs/_build/html</p></li>
+</ol>
+</section>
+<section id="code-structure">
+<h3>Code structure<a class="headerlink" href="#code-structure" title="Permalink to this heading"></a></h3>
+<p>When we use <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> to process the docstrings in our Python code, Sphinx imports the documented modules, which means that all module-level code is executed.</p>
+<p>When our modules are executed in this way, it can lead to unexpected errors or outputs, which can stop the documentation from being generated correctly.</p>
+<p>To prevent this, it is advised that all module-level code is moved into functions.</p>
+<p>For a script which is written to run consequentially without the use of functions, move all code after the module imports into one main function. Then edit the module to run its code only when it is called by name.</p>
+<p>For example, a module named <code class="docutils literal notranslate"><span class="pre">use_tools.py</span></code> that previously looked like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tools</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Should be edited to look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tools</span>
+
+<span class="k">def</span> <span class="nf">run_all</span><span class="p">():</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">run_all</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If the first block were imported as a module, either by Sphinx or another module, the lines of code would be executed, and <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> would be printed. If the second block were imported as a module, the code would not be executed, and nothing would be printed.</p>
+<p>Only if the module were executed independently, e.g. by calling <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">use_tools.py</span></code>, would the code in <code class="docutils literal notranslate"><span class="pre">run_all()</span></code> be executed.</p>
+</section>
+<section id="directory-structure">
+<h3>Directory structure<a class="headerlink" href="#directory-structure" title="Permalink to this heading"></a></h3>
+<p>This example uses two main directories called <code class="docutils literal notranslate"><span class="pre">project_code</span></code> and <code class="docutils literal notranslate"><span class="pre">docs</span></code>. The code folder <code class="docutils literal notranslate"><span class="pre">project_code</span></code> contains all the scripts in a single level, i.e. not nested in further directories.</p>
+<p>Take note that this setup is considered the default in this guide, and a different directory structure will require small tweaks in the setup.</p>
+<p>Sphinx can be used in a setup where the scripts are simply in the root directory and not in a code folder, or in a setup where, within the code folder, scripts are found in various separate folders.</p>
+</section>
+<section id="troubleshooting-html-files-are-created-but-without-information-from-the-docstrings">
+<h3>Troubleshooting: html files are created, but without information from the docstrings<a class="headerlink" href="#troubleshooting-html-files-are-created-but-without-information-from-the-docstrings" title="Permalink to this heading"></a></h3>
+<p>Make sure all imported modules are included in mock imports in conf.py</p>
+<p>Code errors can also lead to documentation appearing blank.</p>
+<p>Errors in a module leads to the documentation for that module not showing up, e.g. errors due to mixed Python 2 and 3</p>
+<p>You will be able to see more errors raised by Sphinx if you generate the html files locally (by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> within your docs folder), than if the doc generation happens on Github - this can be a good step for debugging.</p>
+</section>
+<section id="running-sphinx-quickstart">
+<h3>Running sphinx-quickstart<a class="headerlink" href="#running-sphinx-quickstart" title="Permalink to this heading"></a></h3>
+<p>Go with the default options (not separate build and source directories)</p>
+<p>Provide project name, author name, project version, accept default language (English).</p>
+</section>
+<section id="adding-a-sphinx-docs-build-yml-file">
+<h3>Adding a sphinx-docs-build.yml file<a class="headerlink" href="#adding-a-sphinx-docs-build-yml-file" title="Permalink to this heading"></a></h3>
+<p>This file, located at <code class="docutils literal notranslate"><span class="pre">/.github/workflows/sphinx-docs-build.yml</span></code> within your main project directory, makes calls to existing Github Actions in order to 1) build the HTML files from the source files uploaded in the docs folder, 2) package the generated output files, and 3) push these files to the gh-pages branch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>name: Sphinx build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build HTML
+      uses: ammaraskar/sphinx-action@master
+      with:
+        pre-build-command: pip install sphinx_rtd_theme
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: html-docs
+        path: docs/_build/html/
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == &#39;refs/heads/main&#39;
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_build/html
+</pre></div>
+</div>
+<p>NOTE: when deploying docs from a branch other than the main branch, the line <code class="docutils literal notranslate"><span class="pre">if:</span> <span class="pre">github.ref</span> <span class="pre">==</span> <span class="pre">'refs/heads/main'</span></code> should be edited, replacing <code class="docutils literal notranslate"><span class="pre">main</span></code> with the name of the relevant branch.</p>
+</section>
+<section id="editing-conf-py">
+<h3>Editing <code class="docutils literal notranslate"><span class="pre">conf.py</span></code><a class="headerlink" href="#editing-conf-py" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file configures the Sphinx doc building process. It is automatically generated, but must be edited.</p>
+<p>Below is a full <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file which can be copied and adapted for your repository.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration file for the Sphinx documentation builder.</span>
+<span class="c1">#</span>
+<span class="c1"># For the full list of built-in configuration values, see the documentation:</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../project_code&#39;</span><span class="p">))</span>
+
+<span class="c1"># -- Project information -----------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;Sphinx Demo&#39;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s1">&#39;2024, RFI Team&#39;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s1">&#39;RFI Team&#39;</span>
+<span class="n">release</span> <span class="o">=</span> <span class="s1">&#39;0.1&#39;</span>
+
+<span class="c1"># -- General configuration ---------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.viewcode&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.napoleon&#39;</span>
+<span class="p">]</span>
+
+<span class="n">autodoc_mock_imports</span> <span class="o">=</span> <span class="p">[</span>
+<span class="s1">&#39;datetime&#39;</span><span class="p">,</span>
+<span class="s1">&#39;numpy&#39;</span><span class="p">,</span>
+<span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span>
+<span class="s1">&#39;sys&#39;</span><span class="p">,</span>
+<span class="s1">&#39;os&#39;</span><span class="p">,</span>
+<span class="s1">&#39;time&#39;</span><span class="p">,</span>
+<span class="s1">&#39;h5py&#39;</span><span class="p">,</span>
+<span class="s1">&#39;scipy&#39;</span><span class="p">,</span>
+<span class="s1">&#39;monitor_conf&#39;</span><span class="p">,</span>
+<span class="s1">&#39;collections&#39;</span><span class="p">,</span>
+<span class="s1">&#39;pickle&#39;</span><span class="p">,</span>
+<span class="s1">&#39;pathlib&#39;</span><span class="p">,</span>
+<span class="s1">&#39;tkinter&#39;</span>
+<span class="p">]</span> 
+
+<span class="c1"># Napoleon custom settings</span>
+<span class="n">napoleon_custom_sections</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Returns&#39;</span><span class="p">,</span> <span class="s1">&#39;params_style&#39;</span><span class="p">)]</span>
+
+<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_build&#39;</span><span class="p">,</span> <span class="s1">&#39;Thumbs.db&#39;</span><span class="p">,</span> <span class="s1">&#39;.DS_Store&#39;</span><span class="p">]</span>
+
+<span class="c1"># -- Options for HTML output -------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Each of the relevant blocks which must be edited or added to the original conf.py filed that is generated by <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> is described here:</p>
+<ol class="arabic simple">
+<li><p>Indicate where the project code can be found, relative to the current docs directory:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../project_code&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This version assumes that the code to be documented is all within one directory named “project_code”.</p>
+<p>If the relevant scripts are not within a separate directory, the last line in the above block should read:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Update the list of extensions:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.viewcode&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.napoleon&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Include any external packages used in your code as mock imports to prevent errors when Sphinx attempts to parse the code:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">autodoc_mock_imports</span> <span class="o">=</span> <span class="p">[</span>
+<span class="s1">&#39;datetime&#39;</span><span class="p">,</span>
+<span class="s1">&#39;numpy&#39;</span><span class="p">,</span>
+<span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span>
+<span class="s1">&#39;sys&#39;</span><span class="p">,</span>
+<span class="s1">&#39;os&#39;</span><span class="p">,</span>
+<span class="s1">&#39;time&#39;</span><span class="p">,</span>
+<span class="s1">&#39;h5py&#39;</span><span class="p">,</span>
+<span class="s1">&#39;scipy&#39;</span><span class="p">,</span>
+<span class="s1">&#39;monitor_conf&#39;</span><span class="p">,</span>
+<span class="s1">&#39;collections&#39;</span><span class="p">,</span>
+<span class="s1">&#39;pickle&#39;</span><span class="p">,</span>
+<span class="s1">&#39;pathlib&#39;</span><span class="p">,</span>
+<span class="s1">&#39;tkinter&#39;</span>
+<span class="p">]</span> 
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Edit the way that ‘Returns’ in function docstrings are displayed:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Napoleon custom settings</span>
+<span class="n">napoleon_custom_sections</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Returns&#39;</span><span class="p">,</span> <span class="s1">&#39;params_style&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Change the theme to ‘sphinx_rtd_theme’:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="editing-index-rst">
+<h3>Editing <code class="docutils literal notranslate"><span class="pre">index.rst</span></code><a class="headerlink" href="#editing-index-rst" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file needs to be updated to include <code class="docutils literal notranslate"><span class="pre">modules</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Welcome to Sphinx Demo&#39;s documentation!
+=======================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   
+   modules
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+</pre></div>
+</div>
+</section>
+<section id="creating-requirements-txt">
+<h3>Creating <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code><a class="headerlink" href="#creating-requirements-txt" title="Permalink to this heading"></a></h3>
+<p>A new file named <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> needs to be created in the docs folder, and must contain the following two lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">&gt;=</span><span class="mf">6.1.3</span>
+<span class="n">docutils</span><span class="o">&gt;=</span><span class="mf">0.19</span>
+</pre></div>
+</div>
+<p>This is added to fix an issue with using the “sphinx_rtd_theme” when building the html files on Github.</p>
+</section>
+</section>
+<section id="notes-on-github-actions-workflows-pages">
+<h2>Notes on Github Actions, Workflows, Pages<a class="headerlink" href="#notes-on-github-actions-workflows-pages" title="Permalink to this heading"></a></h2>
+<p>TODO</p>
+</section>
+<section id="docstring-style-guide">
+<h2>Docstring style guide<a class="headerlink" href="#docstring-style-guide" title="Permalink to this heading"></a></h2>
+<p>Two prominent styles of docstrings for Python are the NumPy and Google. The Python guide <a class="reference external" href="https://peps.python.org/pep-0257/">PEP 257</a> also provides some docstring conventions.</p>
+<p>See an example of the NumPy docstring format <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy">here</a>, with further description <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">here</a>.</p>
+<p>See an example of the Google dosctring format <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">here</a>, with further description <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">here</a>.</p>
+<p>These two styles are quite similar, but one format must be selected for consistency across a project.</p>
+<section id="module-level-docstring">
+<h3>Module Level Docstring<a class="headerlink" href="#module-level-docstring" title="Permalink to this heading"></a></h3>
+<p>The docstring description within a module or a script should include:</p>
+<ol class="arabic simple">
+<li><p>Concise description of the module (one line or multiple)</p></li>
+<li><p>(Optional) Use example, such as which function to call with which arguments</p></li>
+<li><p>Author</p></li>
+<li><p>Last updated</p></li>
+</ol>
+<p>Further optional sections for the module-level docstring include Notes and Attributes in NumPy style, and Attributes and ToDos in Google style.</p>
+</section>
+<section id="function-level-docstring">
+<h3>Function Level Docstring<a class="headerlink" href="#function-level-docstring" title="Permalink to this heading"></a></h3>
+<p>The docstring description within a function should include:</p>
+<ol class="arabic simple">
+<li><p>Concise description of the function (one line or multiple)</p></li>
+<li><p>(Optional) Use example, such as which arguments are required when calling the function</p></li>
+<li><p>Parameters (NumPy) or Args (Google)</p></li>
+<li><p>Returns</p></li>
+</ol>
+<p>Further optional sections for the function-level docstring include Raises, Notes, and Attributes in both styles.</p>
+</section>
+</section>
+<section id="additional-notes">
+<h2>Additional notes<a class="headerlink" href="#additional-notes" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Look into Github Actions <a class="reference external" href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions">billing</a></p>
+<ul>
+<li><p>“ For private repositories, each GitHub account receives a certain amount of free minutes and storage for use with GitHub-hosted runners, depending on the account’s plan. Any usage beyond the included amounts is controlled by spending limits.”</p></li>
+</ul>
+</li>
+<li><p>Edit toctree https://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Sphinx Demo’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="project_code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sandra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
