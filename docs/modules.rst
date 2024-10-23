@@ -7,3 +7,4 @@ project_code
    more_tools
    tools
    use_tools
+   another_script

@@ -10,6 +10,7 @@ Welcome to Sphinx Demo's documentation!
    :maxdepth: 2
    :caption: Contents:
    
+   readme
    modules
 
 
